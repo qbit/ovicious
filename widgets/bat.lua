@@ -26,15 +26,15 @@ module("ovicious.widgets.bat")
 
 -- {{{ Battery widget type
 local function worker(format, warg)
-	local b = io.popen( 'apm -a' )
+	local b = io.popen( '/usr/sbin/apm -a' )
     local bs = b:read("*all")
 
-    local p = io.popen( 'apm -l' )
+    local p = io.popen( '/usr/sbin/apm -l' )
     local percent = p:read("*all")
 	percent = string.gsub( percent, "\n", "" )
 	percent = string.gsub( percent, "\r", "" )
 
-    local t = io.popen( 'apm -m' )
+    local t = io.popen( '/usr/sbin/apm -m' )
     local time = t:read("*all")
 
     local battery_state = {
